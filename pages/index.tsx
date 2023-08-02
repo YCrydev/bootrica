@@ -4,7 +4,7 @@ import { InferGetServerSidePropsType } from "next";
 import * as nearAPI from "near-api-js";
 import Navbar from "./Components/Navbar";
 import { signIn, signOut, useSession } from "next-auth/react";
-import StarfieldAnimation from 'react-starfield-animation'
+// import StarfieldAnimation from 'react-starfield-animation'
 
 import axios from "axios"
 import Grid from "@mui/material/Grid";
@@ -147,13 +147,13 @@ const submitInfo =() => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar walletState={walletState} setWalletState={setWalletState}/>
-      <StarfieldAnimation
+      {/* <StarfieldAnimation
         style={{
           position: 'absolute',
           width: '100%',
           height: '100%'
         }}
-      />
+      /> */}
       <div className="connect-btn">
         <button onClick={account_id?()=>walletStuff():()=>disconnectWallet()}>
           {account_id?trunc(account_id):"Connect Wallet"}
