@@ -240,19 +240,24 @@ box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
   gap: 10px;
 }
 .connect-btn,.connect-btn-alt{
-  position: absolute;
+
   display: flex;
   align-items: center;
   justify-content: space-around;
   /* width: 300px; */
   padding: 20px 0px;
+
+ 
+}
+.connect-btn-container{
+  position: absolute;
   top:50%;
   left:51%;
   transform:translate(-50%, -50%);
   width: 100%;
 }
 .connect-btn-alt{
-  top:55%;
+
 }
 .connect-btn>button{
  border: 10px;
@@ -263,6 +268,8 @@ box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
  border-radius: 15px;
  height: 40px;
  padding: 10px;
+ cursor: pointer;
+ color: black;
  /* margin: 10px; */
 }
 .submit-data{

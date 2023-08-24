@@ -28,6 +28,7 @@
     "react-dom": "^18.2.0",
     "react-parallax-tilt": "^1.7.115",
     "react-starfield-animation": "^1.0.1",
+    "starfield-react": "^3.1.0-dev-5",
     "styled-components": "^5.3.6",
     "toastr": "^2.1.4"
   },
