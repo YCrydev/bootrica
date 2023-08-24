@@ -5,7 +5,7 @@ import * as nearAPI from "near-api-js";
 import Navbar from "./Components/Navbar";
 import { signIn, signOut, useSession } from "next-auth/react";
 // import StarfieldAnimation from 'react-starfield-animation'
-import { StarField } from 'starfield-react'
+
 import axios from "axios"
 import Grid from "@mui/material/Grid";
 import loadingSvg from "../assets/loading.svg";
@@ -58,7 +58,6 @@ export default function Home({
   const [selectedProject, SetSelectedProject] = useState("");
   const [NKTCount, setNKTcount] = useState(0);
   const [donsCount, setDonsCount] = useState(0);
-  const [loading,setLoading]=useState(false)
   const {data:session}=useSession()
 const handleClose = () =>  {console.log(selectedNfts)
    SetOpenModal(false)};
@@ -84,7 +83,6 @@ const handleClose = () =>  {console.log(selectedNfts)
     // },[wallet,session])
   }
   const walletStuff=()=>{
-    
     if (typeof window !== "undefined") {
     const near = new nearAPI.Near({
       keyStore: new nearAPI.keyStores.BrowserLocalStorageKeyStore(),
@@ -139,28 +137,8 @@ const trunc=(longString:string)=>{
     return longString
   }
 }
-const submitInfo =async() => {
-  try {
-    // Define the payload
-    if(!account_id||!session){
-      return
-    }
-    setLoading(true)
-    const payload = {
-      nearWallet: account_id,
-      discordId: session?.user?.email
-    };
-    
-    // Make the POST request
-    const response = await axios.post('http://api.bootrica.io:3000/auth/store', payload);
+const submitInfo =() => {
 
-    // Log the response data
-    console.log(response.data);
-    setLoading(false)
-  } catch (error) {
-    // Handle error
-    console.error(`Error: ${error}`);
-  }
 }
   return (
     <div className="container" >
@@ -176,15 +154,8 @@ const submitInfo =async() => {
           height: '100%'
         }}
       /> */}
-      <StarField 
-       style={{
-        position: 'absolute',
-        width: '100%',
-        height: '100%'
-      }}/>
-      <div className="connect-btn-container">
       <div className="connect-btn">
-        <button onClick={!account_id?()=>walletStuff():()=>disconnectWallet()}>
+        <button onClick={account_id?()=>walletStuff():()=>disconnectWallet()}>
           {account_id?trunc(account_id):"Connect Wallet"}
         </button>
         <button onClick={!session?()=>signIn():()=>signOut()}>
@@ -193,10 +164,9 @@ const submitInfo =async() => {
     
      </div>
      <div className="connect-btn-alt">
-     <button className="submit-data" disabled={session&&account_id&&!loading?false:true} onClick={()=>submitInfo()}>
+     <button className="submit-data" disabled={session&&account_id?false:true} onClick={()=>submitInfo()}>
           SUBMIT
         </button>
-        </div>
         </div>
     </div>
   );
